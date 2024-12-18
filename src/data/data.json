@@ -1,0 +1,182 @@
+{
+  "personalInfo": {
+    "name": "Hunain",
+    "title": "Product Designer",
+    "shortBio": "Crafting digital experiences with precision",
+    "fullBio": "I am a San francisco-based product designer with a focus on web design, illustration, a visual development. I have a diverse range of experience having worked across various fields and industries.",
+    "detailedBio": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    "profileImage": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop",
+    "status": "Available for Freelancing"
+  },
+  "experience": [
+    {
+      "period": "2021 - Present",
+      "title": "Web Designer",
+      "company": "Themeforest Market"
+    },
+    {
+      "period": "2021 - 2023",
+      "title": "Marketing Expert GRP",
+      "company": "Envato Theme Developer"
+    },
+    {
+      "period": "2021 - 2022",
+      "title": "Web Designer",
+      "company": "Web Developer & Business Partner"
+    }
+  ],
+  "education": [
+    {
+      "period": "2018 - 2022",
+      "degree": "Bachelor in Computer Science",
+      "institution": "University of Technology"
+    },
+    {
+      "period": "2016 - 2018",
+      "degree": "Higher Secondary Education",
+      "institution": "City College"
+    }
+  ],
+  "testimonials": [
+    {
+      "author": "Author",
+      "name": "Liana Marie",
+      "position": "Lead Designer Meta",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop",
+      "text": "Financial planners help people to knowledge in about how to invest and in save their moneye the most efficient way eve plan ners help people tioniio know ledige in about how."
+    },
+    {
+      "author": "Author",
+      "name": "Zonathon Doe",
+      "position": "CEO & Founder X",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop",
+      "text": "Financial planners help people to knowledge in about how to invest and in save their moneye the most efficient way eve plan ners help people tioniio know ledige in about how."
+    },
+    {
+      "author": "Author",
+      "name": "Liana Marie",
+      "position": "Lead Designer Meta",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop",
+      "text": "Financial planners help people to knowledge in about how to invest and in save their moneye the most efficient way eve plan ners help people tioniio know ledige in about how."
+    },
+    {
+      "author": "Author",
+      "name": "Zonathon Doe",
+      "position": "CEO & Founder X",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop",
+      "text": "Financial planners help people to knowledge in about how to invest and in save their moneye the most efficient way eve plan ners help people tioniio know ledige in about how."
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "LinkedIn",
+      "url": "#",
+      "icon": "LinkedIn"
+    },
+    {
+      "platform": "Instagram",
+      "url": "#",
+      "icon": "Instagram"
+    },
+    {
+      "platform": "Behance",
+      "url": "#",
+      "icon": "Camera"
+    }
+  ],
+  "companies": [
+    {
+      "name": "Company 1",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
+    },
+    {
+      "name": "Company 2",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png"
+    },
+    {
+      "name": "Company 3",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png"
+    },
+    {
+      "name": "Company 4",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+    },
+    {
+      "name": "Company 5",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
+    }
+  ],
+  "navigation": {
+    "links": [
+      {
+        "name": "Home",
+        "path": "/"
+      },
+      {
+        "name": "About",
+        "path": "/about"
+      },
+      {
+        "name": "Service",
+        "path": "/service"
+      },
+      {
+        "name": "Works",
+        "path": "/works"
+      },
+      {
+        "name": "Contact",
+        "path": "/contact"
+      }
+    ]
+  },
+  "projects": {
+    "title": "Works & Projects",
+    "description": "Check out some of my design projects, meticulously crafted with love and dedication, each one reflecting the passion and soul I poured into every detail.",
+    "categories": ["All", "Design", "Game", "Branding", "Marketing"],
+    "items": [
+      {
+        "id": 1,
+        "name": "Modern UI Design",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop",
+        "link": "https://project1.com"
+      },
+      {
+        "id": 2,
+        "name": "Mobile Game UI",
+        "category": "Game",
+        "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop",
+        "link": "https://project2.com"
+      },
+      {
+        "id": 3,
+        "name": "Brand Identity",
+        "category": "Branding",
+        "image": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2000&auto=format&fit=crop",
+        "link": "https://project3.com"
+      },
+      {
+        "id": 4,
+        "name": "Marketing Campaign",
+        "category": "Marketing",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+        "link": "https://project4.com"
+      },
+      {
+        "id": 5,
+        "name": "App Interface",
+        "category": "Design",
+        "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop",
+        "link": "https://project5.com"
+      },
+      {
+        "id": 6,
+        "name": "Game Design",
+        "category": "Game",
+        "image": "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070&auto=format&fit=crop",
+        "link": "https://project6.com"
+      }
+    ]
+  }
+}
