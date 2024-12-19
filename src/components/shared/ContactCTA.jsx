@@ -39,7 +39,7 @@ const ContactCTA = () => {
               fontWeight: 500,
               '&:hover': {
                 bgcolor: 'transparent',
-                borderColor: '#eb5d3a',
+                borderColor: '#fff',
                 '& .MuiSvgIcon-root': {
                   transform: 'translateX(4px)',
                 }

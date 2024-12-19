@@ -9,6 +9,8 @@ import About from './pages/About';
 import WorkPage from './pages/Work';
 import ContactCTA from './components/shared/ContactCTA';
 import Footer from './components/shared/Footer';
+import Service from './pages/Service';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/work" element={<WorkPage />} />
+              <Route path="/service" element={<Service />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
             <Container maxWidth="lg" sx={{ mt: 5 }}>
               <ContactCTA />

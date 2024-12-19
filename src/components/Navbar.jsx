@@ -13,6 +13,7 @@ import {
   ListItem,
   ListItemText,
   ListItemButton,
+  Container,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -171,7 +172,8 @@ function Navbar() {
         }}
         elevation={0}
       >
-        <Toolbar disableGutters sx={{ px: { xs: 2, md: 5 } }}>
+        <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ px: { xs: 2, md: 0 } }}>
           {/* Logo/Brand for larger screens */}
           <Typography
             variant="h6"
@@ -281,6 +283,7 @@ function Navbar() {
             </Button>
           </Box>
         </Toolbar>
+        </Container>
       </AppBar>
 
       {/* Mobile Drawer */}

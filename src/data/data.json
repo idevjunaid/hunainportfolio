@@ -3,10 +3,24 @@
     "name": "Hunain",
     "title": "Product Designer",
     "shortBio": "Crafting digital experiences with precision",
-    "fullBio": "I am a San francisco-based product designer with a focus on web design, illustration, a visual development. I have a diverse range of experience having worked across various fields and industries.",
+    "fullBio": "I am a San Francisco-based product designer with a focus on web design, illustration, and visual development. I have a diverse range of experience having worked across various fields and industries.",
     "detailedBio": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
     "profileImage": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop",
     "status": "Available for Freelancing"
+  },
+  "contactInfo": {
+    "office": {
+      "title": "Office",
+      "details": "Jurain, Dhaka, Bangladesh"
+    },
+    "email": {
+      "title": "Email",
+      "details": "idevjunaid@gmail.com"
+    },
+    "contactNo": {
+      "title": "Contact No.",
+      "details": "+1234321321"
+    }
   },
   "experience": [
     {
@@ -178,5 +192,62 @@
         "link": "https://project6.com"
       }
     ]
-  }
+  },
+  "services": [
+    {
+        "id": 1,
+        "title": "Web Development",
+        "description": "Building responsive and functional websites using the latest technologies."
+    },
+    {
+        "id": 2,
+        "title": "Mobile App Development",
+        "description": "Creating mobile applications for both iOS and Android platforms."
+    },
+    {
+        "id": 3,
+        "title": "SEO Services",
+        "description": "Optimizing websites to rank higher in search engine results."
+    }
+  ],
+  "pricing": [
+    {
+      "id": 1,
+      "title": "Basic",
+      "description": "Have design ready to build? or small budget",
+      "rate": "$15",
+      "features": [
+        "Need your wireframe",
+        "Design with Figma, Framer",
+        "Product Design",
+        "Digital Marketing",
+        "Custom Support"
+      ],
+      "buttonText": "Order Now"
+    },
+    {
+      "id": 2,
+      "title": "Standard",
+      "description": "For growing businesses",
+      "rate": "$25",
+      "features": [
+        "Includes everything in Basic",
+        "Additional support",
+        "Priority response"
+      ],
+      "buttonText": "Order Now"
+    },
+    {
+      "id": 3,
+      "title": "Premium",
+      "description": "For established businesses",
+      "rate": "$40",
+      "features": [
+        "Includes everything in Standard",
+        "Dedicated support",
+        "Custom solutions"
+      ],
+      "buttonText": "Order Now"
+    }
+  ]
 }

@@ -102,7 +102,6 @@ const About = () => {
       sx={{
         minHeight: '100vh',
         pt: { xs: 12, md: 16 },
-        pb: 8,
         bgcolor: 'background.default',
         color: 'text.primary',
       }}
@@ -284,7 +283,7 @@ const About = () => {
         </Box>
 
         {/* Testimonials Section */}
-        <Box sx={{ mt: 8 , backgroundColor: '#121214', borderRadius: 4, padding:4}}>
+        <Box sx={{ mt: 5 , backgroundColor: '#121214', borderRadius: 4, padding:4}}>
           <Typography variant="h6" align="center" gutterBottom fontWeight={500} color="#9f9f9f">
           Testinomials
           </Typography>
