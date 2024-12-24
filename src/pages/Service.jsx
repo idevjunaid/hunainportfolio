@@ -8,7 +8,7 @@ const Service = () => {
 
     return (
         <Container maxWidth="lg" >
-            <Box sx={{ mt: 5, backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
+            <Box sx={{  backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
                 <Typography variant="h6" align="center" gutterBottom fontWeight={500} color="#9f9f9f">
                     Services
                 </Typography>
@@ -79,7 +79,7 @@ const Service = () => {
                                             borderColor: '#eb5d3a',
                                             borderRadius: '20px',
                                             fontWeight: 'bold',
-                                            transition: 'background-color 0.3s ease-in-out',
+                                            transition: 'all 0.3s ease-in-out',
                                             '&:hover': {
                                                 backgroundColor: 'transparent',
                                                 color: 'white',

@@ -43,7 +43,7 @@ const Contact = () => {
     };
 
     return (
-        <Container maxWidth="lg" sx={{ mt: 5 }}>
+        <Container maxWidth="lg" >
             <Box sx={{ backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                     {/* Contact Information Card */}
@@ -75,7 +75,7 @@ const Contact = () => {
                         <Card sx={{ border: '1px solid #9f9b80', borderRadius: '12px' }}>
                             <CardContent sx={{ backgroundColor: '#121214' }}>
                                 <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 2 }}>
+                                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, justifyContent: 'space-between', gap: 2 }}>
                                         <Box sx={{ flex: 1, marginBottom: '10px' }}>
                                             <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80', marginBottom: '5px' }}>Name</Typography>
                                             <TextField

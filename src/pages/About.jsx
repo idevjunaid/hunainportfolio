@@ -6,10 +6,17 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from '../data/data.json';
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
   const { personalInfo, socialLinks, experience, education, testimonials } = data;
   const sliderRef = React.useRef(null);
+  const navigate = useNavigate();
+
+
+  const handleGetInTouch = () => {
+    navigate('/contact'); // Route to contact when clicking on "Hire Me"
+  };
 
   const settings = {
     dots: false,
@@ -100,8 +107,6 @@ const About = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        pt: { xs: 12, md: 16 },
         bgcolor: 'background.default',
         color: 'text.primary',
       }}
@@ -199,7 +204,9 @@ const About = () => {
               <Button
                 variant="outlined"
                 color="inherit"
-                endIcon={<SendIcon sx={{ fontSize: 18 }} />}
+                endIcon={<SendIcon  />}
+                onClick={handleGetInTouch}
+                disableRipple
                 sx={{
                   borderRadius: '20px',
                   p: 2,
@@ -208,7 +215,7 @@ const About = () => {
                   bgcolor: '#eb5d3a',
                   color: '#fff',
                   borderColor: '#eb5d3a',
-                  borderWidth: '0.5px',
+                  borderWidth: '0.1px',
                   transition: 'all 0.3s ease-in-out',
                   '&:hover': {
                     bgcolor: 'transparent',
@@ -353,14 +360,19 @@ const About = () => {
             >
               <Button
                 onClick={goToPrev}
+                disableRipple
                 sx={{
                   minWidth: 'auto',
                   p: 1,
                   bgcolor: '#eb5d3a',
                   color: '#fff',
                   borderRadius: '50%',
+                  borderWidth: '0.1px',
+                  borderStyle: 'solid',
+                  borderColor: '#eb5d3a',
                   '&:hover': {
-                    bgcolor: '#eb5d3a'
+                    bgcolor: 'transparent',
+                    borderColor: '#ffffff'
                   }
                 }}
               >
@@ -368,14 +380,19 @@ const About = () => {
               </Button>
               <Button
                 onClick={goToNext}
+                disableRipple
                 sx={{
                   minWidth: 'auto',
                   p: 1,
                   bgcolor: '#eb5d3a',
                   color: '#fff',
                   borderRadius: '50%',
+                  borderWidth: '0.1px',
+                  borderStyle: 'solid',
+                  borderColor: '#eb5d3a',
                   '&:hover': {
-                    bgcolor: '#eb5d3a'
+                    bgcolor: 'transparent',
+                    borderColor: '#ffffff'
                   }
                 }}
               >

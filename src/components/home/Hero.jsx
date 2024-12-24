@@ -28,7 +28,7 @@ const Hero = () => {
         flexDirection: 'column',
         bgcolor: 'background.default',
         color: 'text.primary',
-        pt: 10
+        // pt: 10
       }}
     >
         <Box
@@ -158,6 +158,7 @@ const Hero = () => {
                 variant="outlined"
                 color="inherit"
                 endIcon={<DownloadIcon sx={{ fontSize: 18 }} />}
+                onClick={() => window.open('/cv.pdf', '_blank')}
                 sx={{
                   borderRadius: '20px',
                   p: '8px 16px',

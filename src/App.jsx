@@ -11,38 +11,66 @@ import ContactCTA from './components/shared/ContactCTA';
 import Footer from './components/shared/Footer';
 import Service from './pages/Service';
 import Contact from './pages/Contact';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Loading from './components/Loading';
 
 function App() {
+  React.useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      easing: 'ease-in-out',
+      once: false,
+    });
+  }, []);
+
+
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ThemeProviderWrapper>
-      <Router>
-        <Box 
-          component="main"
-          sx={{ 
-            minHeight: '100vh',
-            width: '100%',
-            bgcolor: 'background.default',
-            color: 'text.primary',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Navbar />
-          <Box component="div" sx={{ flex: 1 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/service" element={<Service />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-            <Container maxWidth="lg" sx={{ mt: 5 }}>
-              <ContactCTA />
-            </Container>
-            <Footer />
-          </Box>
+
+      <Box
+        component="div"
+        sx={{
+          minHeight: '100vh',
+          width: '100%',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <Box component="div" sx={{ flex: 1 }}>
+          {loading ? <Loading isVisible={loading} /> : (
+            <>
+              <Router>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/work" element={<WorkPage />} />
+                  <Route path="/service" element={<Service />} />
+                  <Route path="/contact" element={<Contact />} />
+                </Routes>
+
+                <Container maxWidth="lg" sx={{ mt: 5 }}>
+                  <ContactCTA />
+                </Container>
+                <Footer />
+              </Router>
+            </>
+          )}
         </Box>
-      </Router>
+      </Box>
     </ThemeProviderWrapper>
   );
 }

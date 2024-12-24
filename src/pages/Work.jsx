@@ -4,7 +4,7 @@ import Work from '../components/shared/Work';
 
 const WorkPage = () => {
   return (
-    <Box sx={{ pt: 12, pb: 8 }}>
+    <Box>
       <Container maxWidth="lg">
         <Work showAll={true} />
       </Container>

@@ -34,7 +34,7 @@ const ContactCTA = () => {
               bgcolor: '#eb5d3a',
               borderColor: '#eb5d3a',
               borderRadius: '20px',
-              py: 1,
+              p:2,
               fontSize: '1rem',
               fontWeight: 500,
               '&:hover': {

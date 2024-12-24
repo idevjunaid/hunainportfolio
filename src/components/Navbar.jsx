@@ -6,7 +6,6 @@ import {
   IconButton,
   Typography,
   Button,
-  useScrollTrigger,
   useTheme,
   Drawer,
   List,
@@ -32,12 +31,25 @@ const pages = [
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (document.body.scrollTop > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    document.body.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -48,46 +60,60 @@ function Navbar() {
     setMobileOpen(false);
   };
 
+  const handleLogoClick = () => {
+    navigate('/'); // Route to home when clicking on the logo
+  };
+
+  const handleHireMeClick = () => {
+    navigate('/contact'); // Route to contact when clicking on "Hire Me"
+  };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        p: 2,
-        borderBottom: 1,
-        borderColor: 'divider'
-      }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          p: 2,
+          borderBottom: 1,
+          borderColor: 'divider',
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
             fontFamily: 'monospace',
             fontWeight: 700,
             letterSpacing: '.3rem',
+            cursor: 'pointer',
           }}
+          onClick={handleLogoClick}
         >
           HUNAIN
         </Typography>
-        <IconButton 
+        <IconButton
           onClick={handleDrawerToggle}
-          sx={{ 
+          sx={{
             color: 'inherit',
-            '&:hover': { color: 'primary.main' }
+            '&:hover': { color: 'primary.main' },
           }}
         >
           <CloseIcon />
         </IconButton>
       </Box>
-      
-      <List sx={{ 
-        flexGrow: 1, 
-        display: 'flex', 
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 2,
-        p: 4
-      }}>
+
+      <List
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 2,
+          p: 4,
+        }}
+      >
         {pages.map((page) => (
           <ListItem key={page.name} disablePadding>
             <ListItemButton
@@ -99,12 +125,12 @@ function Navbar() {
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
                   color: '#eb5d3a',
-                  bgcolor: 'transparent'
+                  bgcolor: 'transparent',
                 },
-                color: location.pathname === page.path ? '#eb5d3a' : 'inherit'
+                color: location.pathname === page.path ? '#eb5d3a' : 'inherit',
               }}
             >
-              <ListItemText 
+              <ListItemText
                 primary={page.name}
                 primaryTypographyProps={{
                   sx: {
@@ -112,9 +138,9 @@ function Navbar() {
                     fontSize: '1.1rem',
                     transition: 'all 0.3s ease-in-out',
                     '&:hover': {
-                      fontWeight: 700
-                    }
-                  }
+                      fontWeight: 700,
+                    },
+                  },
                 }}
               />
             </ListItemButton>
@@ -124,7 +150,7 @@ function Navbar() {
           <Button
             variant="outlined"
             color="inherit"
-            onClick={handleDrawerToggle}
+            onClick={handleHireMeClick} // Added onClick for Hire Me
             disableRipple
             sx={{
               mt: 4,
@@ -140,8 +166,8 @@ function Navbar() {
                 bgcolor: '#eb5d3a',
               },
               '& .MuiButton-endIcon': {
-                marginLeft: 2
-              }
+                marginLeft: 2,
+              },
             }}
             endIcon={<HandshakeOutlinedIcon />}
           >
@@ -154,135 +180,140 @@ function Navbar() {
 
   return (
     <>
-      <AppBar 
+      <AppBar
         component="nav"
-        sx={{ 
+        sx={{
           width: '100%',
           bgcolor: 'background.paper',
-          transition: 'all 0.3s ease-in-out',
-          position: trigger ? 'fixed' : 'static',
+          transition: 'padding 0.1s ease-in-out, box-shadow 0.3s ease-in-out',
+          position: 'sticky',
           top: 0,
           left: 0,
-          boxShadow: trigger ? 8 : 0,
+          boxShadow: isScrolled ? 8 : 0,
           '& .MuiToolbar-root': {
-            paddingY: trigger ? '15px' : '35px',
-            transition: 'padding 0.3s ease-in-out'
+            paddingY: isScrolled ? '15px' : '35px',
+            transition: 'padding 0.3s ease-in-out',
           },
-          color: theme.palette.mode === 'light' ? 'text.primary' : 'inherit'
+          color: theme.palette.mode === 'light' ? 'text.primary' : 'inherit',
         }}
         elevation={0}
       >
         <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ px: { xs: 2, md: 0 } }}>
-          {/* Logo/Brand for larger screens */}
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            HUNAIN
-          </Typography>
-
-          {/* Mobile menu icon */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="open drawer"
-              onClick={handleDrawerToggle}
-              color="inherit"
+          <Toolbar disableGutters sx={{ px: { xs: 2, md: 0 } }}>
+            {/* Logo/Brand for larger screens */}
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+                cursor: 'pointer',
+              }}
+              onClick={handleLogoClick} // Added onClick for Logo
             >
-              <MenuIcon />
-            </IconButton>
-          </Box>
+              HUNAIN
+            </Typography>
 
-          {/* Logo/Brand for mobile */}
-          <Typography
-            variant="h5"
-            noWrap
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            HUNAIN
-          </Typography>
+            {/* Mobile menu icon */}
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="open drawer"
+                onClick={handleDrawerToggle}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Box>
 
-          {/* Desktop menu */}
-          <Box sx={{ 
-            flexGrow: 1, 
-            display: { xs: 'none', md: 'flex' }, 
-            justifyContent: 'center',
-            gap: 2
-          }}>
-            {pages.map((page) => (
+            {/* Logo/Brand for mobile */}
+            <Typography
+              variant="h5"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+                cursor: 'pointer',
+              }}
+              onClick={handleLogoClick} // Added onClick for Logo
+            >
+              HUNAIN
+            </Typography>
+
+            {/* Desktop menu */}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: 'none', md: 'flex' },
+                justifyContent: 'center',
+                gap: 2,
+              }}
+            >
+              {pages.map((page) => (
+                <Button
+                  key={page.path}
+                  onClick={() => handleNavigation(page.path)}
+                  disableRipple
+                  sx={{
+                    color: location.pathname === page.path ? '#eb5d3a' : 'inherit',
+                    fontWeight: location.pathname === page.path ? 700 : 600,
+                    transition: 'color 0.3s ease-in-out',
+                    textTransform: 'none',
+                    background: 'none',
+                    '&:hover': {
+                      color: '#eb5d3a',
+                      background: 'none',
+                    },
+                  }}
+                >
+                  {page.name}
+                </Button>
+              ))}
+            </Box>
+
+            {/* Right side buttons */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <ThemeSwitcher />
               <Button
-                key={page.path}
-                onClick={() => handleNavigation(page.path)}
+                variant="outlined"
+                color="inherit"
                 disableRipple
+                onClick={handleHireMeClick} // Added onClick for Hire Me
                 sx={{
-                  color: location.pathname === page.path ? '#eb5d3a' : 'inherit',
-                  fontWeight: location.pathname === page.path ? 700 : 600,
-                  transition: 'color 0.3s ease-in-out',
-                  textTransform: 'none',
-                  background: 'none',
+                  display: { xs: 'none', md: 'flex' },
+                  borderRadius: '20px',
+                  p: 2,
+                  fontWeight: 600,
+                  transition: 'all 0.5s ease-in-out',
                   '&:hover': {
-                    color: '#eb5d3a',
-                    background: 'none'
+                    borderColor: '#eb5d3a',
+                    color: '#fff',
+                    bgcolor: '#eb5d3a',
+                  },
+                  '&:focus': {
+                    outline: 'none',
+                  },
+                  '& .MuiButton-endIcon': {
+                    marginLeft: 1,
                   },
                 }}
+                endIcon={<HandshakeOutlinedIcon />}
               >
-                {page.name}
+                Hire Me
               </Button>
-            ))}
-          </Box>
-
-          {/* Right side buttons */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <ThemeSwitcher />
-            <Button 
-              variant="outlined" 
-              color="inherit"
-              disableRipple
-              sx={{ 
-                display: { xs: 'none', md: 'flex' },
-                borderRadius: '20px',
-                p: 2,
-                fontWeight: 600,
-                transition: 'all 0.5s ease-in-out',
-                '&:hover': {
-                  borderColor: '#eb5d3a',
-                  color: '#fff',
-                  bgcolor: '#eb5d3a',
-                },
-                '&:focus': {
-                  outline: 'none'
-                },
-                '& .MuiButton-endIcon': {
-                  marginLeft: 1
-                }
-              }}
-              endIcon={<HandshakeOutlinedIcon />}
-            >
-              Hire Me
-            </Button>
-          </Box>
-        </Toolbar>
+            </Box>
+          </Toolbar>
         </Container>
       </AppBar>
 
