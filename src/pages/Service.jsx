@@ -7,7 +7,7 @@ const Service = () => {
     const { services, pricing } = data;
 
     return (
-        <Container maxWidth="lg" >
+        <Container sx={{maxWidth:'1140px !important'}} >
             <Box sx={{  backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
                 <Typography variant="h6" align="center" gutterBottom fontWeight={500} color="#9f9f9f">
                     Services

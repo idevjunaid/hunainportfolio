@@ -9,7 +9,7 @@ import Work from '../components/shared/Work';
 const Home = () => {
   return (
     <Box>
-      <Container maxWidth="lg">
+      <Container sx={{maxWidth:'1140px !important'}}>
         <Hero />
         <Work showAll={false} />
       </Container>

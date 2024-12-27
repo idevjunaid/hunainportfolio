@@ -8,7 +8,7 @@ const ContactCTA = () => {
 
   return (
     <Box sx={{ bgcolor: '#121214', py: 8, borderRadius: '16px' }}>
-      <Container maxWidth="lg">
+      <Container sx={{maxWidth:'1140px !importanat'}}>
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="h4" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
             Are You Ready to kickstart your project with a touch of magic?

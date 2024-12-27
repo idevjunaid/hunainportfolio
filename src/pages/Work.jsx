@@ -5,7 +5,7 @@ import Work from '../components/shared/Work';
 const WorkPage = () => {
   return (
     <Box>
-      <Container maxWidth="lg">
+      <Container sx={{maxWidth:'1140px !important'}}>
         <Work showAll={true} />
       </Container>
     </Box>

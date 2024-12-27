@@ -12,7 +12,7 @@ const Footer = () => {
         mt: 5
       }}
     >
-      <Container maxWidth="lg">
+      <Container sx={{maxWidth:'1140px !important'}}>
         <Box sx={{ 
           display: 'flex', 
           flexDirection: { xs: 'column', sm: 'row' },

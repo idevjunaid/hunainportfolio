@@ -111,7 +111,7 @@ const About = () => {
         color: 'text.primary',
       }}
     >
-      <Container maxWidth="lg">
+      <Container sx={{maxWidth:'1140px !important'}}>
         {/* Hero Cards Section */}
         <Box
           sx={{

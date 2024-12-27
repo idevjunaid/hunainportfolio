@@ -17,11 +17,11 @@ import Loading from './components/Loading';
 
 function App() {
   React.useEffect(() => {
-    AOS.init({
-      duration: 1200,
-      easing: 'ease-in-out',
-      once: false,
-    });
+      AOS.init({
+        duration: 1200,
+        easing: 'ease-in-out',
+        once: false,
+      });
   }, []);
 
 
@@ -39,7 +39,6 @@ function App() {
     <ThemeProviderWrapper>
 
       <Box
-        component="div"
         sx={{
           minHeight: '100vh',
           width: '100%',
@@ -62,7 +61,7 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                 </Routes>
 
-                <Container maxWidth="lg" sx={{ mt: 5 }}>
+                <Container  sx={{ mt: 5, maxWidth:'1140px !important' }}>
                   <ContactCTA />
                 </Container>
                 <Footer />

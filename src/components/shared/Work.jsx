@@ -19,7 +19,7 @@ const Work = ({ showAll = false }) => {
 
   return (
     <Box sx={{ bgcolor: '#121214', py: 8, borderRadius: '16px', }}>
-      <Container maxWidth="lg">
+      <Container sx={{maxWidth:'1140px !important'}}>
         <Box sx={{  textAlign: 'center' }}>
           {/* Title and Description */}
           <Typography variant="h4" gutterBottom sx={{ color: 'text.primary' }}>

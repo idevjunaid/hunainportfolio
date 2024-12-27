@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography, Container, Button, Card, Stack, IconButton } from '@mui/material';
 import { LinkedIn as LinkedInIcon, Instagram as InstagramIcon, Camera as BehanceIcon, FileDownload as DownloadIcon, FiberManualRecord as DotIcon } from '@mui/icons-material';
 import CompanySlider from './CompanySlider';
 import data from '../../data/data.json';
+import AOS from 'aos';
+
 
 const Hero = () => {
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
+
   const { personalInfo, socialLinks } = data;
 
   const getSocialIcon = (iconName) => {
@@ -28,22 +34,25 @@ const Hero = () => {
         flexDirection: 'column',
         bgcolor: 'background.default',
         color: 'text.primary',
-        // pt: 10
       }}
     >
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 4,
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: 'stretch',
+          width: '100%',
+          maxWidth: '100%',
+          overflow: 'hidden',
+          mb: 5,
+        }}
+      >
         <Box
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-ease="ease-in-out"
           sx={{
-            display: 'flex',
-            gap: 4,
-            flexDirection: { xs: 'column', md: 'row' },
-            alignItems: 'stretch',
-            width: '100%',
-            maxWidth: '100%',
-            overflow: 'hidden',
-            mb: 5,
-          }}
-        >
-          <Box sx={{
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
@@ -51,73 +60,79 @@ const Hero = () => {
             width: '100%',
             maxWidth: '100%'
           }}>
-            {/* Profile Image Card */}
-            <Card
-              elevation={0}
-              sx={{
-                flex: 1,
-                p: 4,
-                bgcolor: '#121214',
-                borderRadius: 4,
-                textAlign: 'center'
-              }}
-            >
-              <Box
-                component="img"
-                src={personalInfo.profileImage}
-                alt="Profile"
-                sx={{
-                  width: '200px',
-                  height: '200px',
-                  borderRadius: '50%',
-                  mb: 2,
-                  objectFit: 'cover'
-                }}
-              />
-              <Typography variant="h4" fontWeight={600} gutterBottom>
-                {personalInfo.name}
-              </Typography>
-              <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-                {personalInfo.shortBio}
-              </Typography>
-              <Stack
-                direction="row"
-                spacing={2}
-                justifyContent="center"
-                sx={{ mt: 2 }}
-              >
-                {socialLinks.map((social, index) => (
-                  <IconButton
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      color: 'text.primary',
-                      transition: 'all 0.3s ease-in-out',
-                      '&:hover': {
-                        color: '#eb5d3a',
-                        transform: 'translateY(-3px)'
-                      }
-                    }}
-                  >
-                    {getSocialIcon(social.icon)}
-                  </IconButton>
-                ))}
-              </Stack>
-            </Card>
-          </Box>
-          <Box
+          {/* Profile Image Card */}
+          <Card
+            elevation={0}
             sx={{
-              display: 'flex',
-              gap: 4,
-              flexDirection: 'column',
-              alignItems: 'stretch',
-              width: '100%',
-              maxWidth: '100%',
-              overflow: 'hidden'
+              flex: 1,
+              p: 4,
+              bgcolor: '#121214',
+              borderRadius: 4,
+              textAlign: 'center'
             }}
           >
+            <Box
+              component="img"
+              src={personalInfo.profileImage}
+              alt="Profile"
+              sx={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '50%',
+                mb: 2,
+                objectFit: 'cover'
+              }}
+            />
+            <Typography variant="h4" fontWeight={600} gutterBottom >
+              {personalInfo.name}
+            </Typography>
+            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+              {personalInfo.shortBio}
+            </Typography>
+            <Stack
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+              sx={{ mt: 2 }}
+            >
+              {socialLinks.map((social, index) => (
+                <IconButton
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: 'text.primary',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      color: '#eb5d3a',
+                      transform: 'translateY(-3px)'
+                    }
+                  }}
+                >
+                  {getSocialIcon(social.icon)}
+                </IconButton>
+              ))}
+            </Stack>
+          </Card>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 4,
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            width: '100%',
+            maxWidth: '100%',
+            overflow: 'hidden'
+          }}
+        >
+          <Box
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-ease="ease-in-out"
+          >
+
             <Card
               elevation={0}
               sx={{
@@ -140,8 +155,8 @@ const Hero = () => {
               </Typography>
               <Typography
                 variant="subtitle1"
-                sx={{ 
-                  mt: 3, 
+                sx={{
+                  mt: 3,
                   mb: 4,
                   color: '#9f9f9f',
                   display: 'flex',
@@ -175,9 +190,10 @@ const Hero = () => {
                 Download CV
               </Button>
             </Card>
-            <CompanySlider />
           </Box>
+          <CompanySlider />
         </Box>
+      </Box>
     </Box>
   );
 };

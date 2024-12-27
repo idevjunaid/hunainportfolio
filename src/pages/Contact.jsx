@@ -43,7 +43,7 @@ const Contact = () => {
     };
 
     return (
-        <Container maxWidth="lg" >
+        <Container sx={{maxWidth:'1140px !important'}} >
             <Box sx={{ backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                     {/* Contact Information Card */}

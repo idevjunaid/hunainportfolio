@@ -198,7 +198,7 @@ function Navbar() {
         }}
         elevation={0}
       >
-        <Container maxWidth="lg">
+        <Container sx={{ maxWidth: '1140px !important' }}>
           <Toolbar disableGutters sx={{ px: { xs: 2, md: 0 } }}>
             {/* Logo/Brand for larger screens */}
             <Typography
