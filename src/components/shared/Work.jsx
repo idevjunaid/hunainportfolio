@@ -2,92 +2,112 @@ import React, { useState } from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, Tabs, Tab, IconButton, Container } from '@mui/material';
 import { NorthEast as LinkIcon } from '@mui/icons-material';
 import data from '../../data/data.json';
+import { useInView } from 'react-intersection-observer';
 
 const Work = ({ showAll = false }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [transitioning, setTransitioning] = useState(false);
   const { projects } = data;
 
+  const { ref: titleRef, inView: titleInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref: tabsRef, inView: tabsInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref: cardsRef, inView: cardsInView } = useInView({ triggerOnce: false, threshold: 0.2 });
+
   const handleCategoryChange = (event, newValue) => {
-    setSelectedCategory(newValue);
+    if (selectedCategory !== newValue) {
+      setTransitioning(true); // Start transitioning
+      setTimeout(() => {
+        setSelectedCategory(newValue); // Change the tab
+        setTransitioning(false); // End transitioning
+      }, 300); // Delay to hide cards
+    }
   };
 
-  const filteredProjects = projects.items.filter(project => 
-    selectedCategory === 'All' || project.category === selectedCategory
+  const filteredProjects = projects.items.filter(
+    (project) => selectedCategory === 'All' || project.category === selectedCategory
   );
 
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6);
 
   return (
-    <Box sx={{ bgcolor: '#121214', py: 8, borderRadius: '16px', }}>
-      <Container sx={{maxWidth:'1140px !important'}}>
-        <Box sx={{  textAlign: 'center' }}>
-          {/* Title and Description */}
-          <Typography variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
-            {projects.title}
-          </Typography>
-          <Typography 
-            variant="subtitle1" 
-            sx={{ 
-              m: 'auto', 
-              mb: 6,
-              color: '#9f9f9f',
-              maxWidth: '800px'
+    <Box sx={{ bgcolor: '#121214', py: 8, borderRadius: '16px' }}>
+      <Container sx={{ maxWidth: '1140px !important' }}>
+        <Box sx={{ textAlign: 'center' }}>
+          {/* Title Section */}
+          <Box
+            ref={titleRef}
+            sx={{
+              opacity: titleInView ? 1 : 0,
+              transform: titleInView ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 0.8s ease, transform 0.8s ease',
             }}
           >
-            {projects.description}
-          </Typography>
+            <Typography variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
+              {projects.title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                m: 'auto',
+                mb: 6,
+                color: '#9f9f9f',
+                maxWidth: '800px',
+              }}
+            >
+              {projects.description}
+            </Typography>
+          </Box>
 
           {/* Category Tabs */}
-          <Tabs
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            disableRipple
+          <Box
+            ref={tabsRef}
             sx={{
-              mb: 4,
-              '& .MuiTabs-indicator': {
-                display: 'none',
-              },
-              '& .MuiTab-root': {
-                color: '#9f9f9f',
-                fontWeight: 600,
-                position: 'relative',
-                minWidth: 'auto',
-                padding: '12px 16px 12px 0',
-                marginRight: '24px',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: 0,
-                  height: '2px',
-                  backgroundColor: '#eb5d3a',
-                  transition: 'width 0.3s ease-in-out'
-                },
-                '&.Mui-selected': {
-                  color: '#eb5d3a',
-                  '&::after': {
-                    width: '60%',
-                  }
-                },
-                '&:hover': {
-                  color: '#eb5d3a',
-                },
-              },
+              opacity: tabsInView ? 1 : 0,
+              transform: tabsInView ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 0.8s ease, transform 0.8s ease',
             }}
           >
-            {projects.categories.map((category) => (
-              <Tab
-                key={category}
-                label={category}
-                value={category}
-                disableRipple
-              />
-            ))}
-          </Tabs>
+            <Tabs
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              disableRipple
+              sx={{
+                mb: 4,
+                '& .MuiTabs-indicator': { display: 'none' },
+                '& .MuiTab-root': {
+                  color: '#9f9f9f',
+                  fontWeight: 600,
+                  position: 'relative',
+                  minWidth: 'auto',
+                  padding: '12px 16px 12px 0',
+                  marginRight: '24px',
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: 0,
+                    height: '2px',
+                    backgroundColor: '#eb5d3a',
+                    transition: 'width 0.3s ease-in-out',
+                  },
+                  '&.Mui-selected': {
+                    color: '#eb5d3a',
+                    '&::after': { width: '60%' },
+                  },
+                  '&:hover': { color: '#eb5d3a' },
+                },
+              }}
+            >
+              {projects.categories.map((category) => (
+                <Tab key={category} label={category} value={category} disableRipple />
+              ))}
+            </Tabs>
+          </Box>
 
           {/* Project Cards Grid */}
           <Box
+            ref={cardsRef}
             sx={{
               display: 'grid',
               gridTemplateColumns: {
@@ -96,9 +116,11 @@ const Work = ({ showAll = false }) => {
                 md: 'repeat(3, 1fr)',
               },
               gap: 3,
+              opacity: transitioning ? 0 : 1, // Change opacity based on transitioning state
+              transition: 'opacity 0.3s ease',
             }}
           >
-            {displayedProjects.map((project) => (
+            {displayedProjects.map((project, index) => (
               <Card
                 key={project.id}
                 sx={{
@@ -107,6 +129,9 @@ const Work = ({ showAll = false }) => {
                   overflow: 'hidden',
                   position: 'relative',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
+                  opacity: cardsInView ? 1 : 0,
+                  transform: cardsInView ? 'translateY(0)' : 'translateY(30px)',
+                  transition: `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`,
                 }}
               >
                 <Box sx={{ position: 'relative' }}>
@@ -115,9 +140,7 @@ const Work = ({ showAll = false }) => {
                     height="200"
                     image={project.image}
                     alt={project.name}
-                    sx={{
-                      objectFit: 'cover'
-                    }}
+                    sx={{ objectFit: 'cover' }}
                   />
                   <Box
                     className="overlay"
@@ -133,9 +156,7 @@ const Work = ({ showAll = false }) => {
                       justifyContent: 'center',
                       opacity: 0,
                       transition: 'opacity 0.3s ease-in-out',
-                      '&:hover': {
-                        opacity: 1,
-                      }
+                      '&:hover': { opacity: 1 },
                     }}
                   >
                     <IconButton
@@ -147,11 +168,11 @@ const Work = ({ showAll = false }) => {
                       sx={{
                         color: '#fff',
                         bgcolor: '#eb5d3a',
-                        width: 40,
-                        height: 40,
+                        width: 60,
+                        height: 60,
+                        transition: 'all 0.1s ease-in-out',
                         '&:hover': {
-                          bgcolor: '#eb5d3a',
-                          transform: 'scale(1.1)',
+                          color: '#fff',
                         },
                       }}
                     >

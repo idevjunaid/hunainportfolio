@@ -16,19 +16,10 @@ import 'aos/dist/aos.css';
 import Loading from './components/Loading';
 
 function App() {
-  React.useEffect(() => {
-      AOS.init({
-        duration: 1200,
-        easing: 'ease-in-out',
-        once: false,
-      });
-  }, []);
-
 
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
@@ -39,6 +30,7 @@ function App() {
     <ThemeProviderWrapper>
 
       <Box
+      component="main"
         sx={{
           minHeight: '100vh',
           width: '100%',

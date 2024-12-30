@@ -4,9 +4,15 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import data from '../data/data.json'; // Adjust the path as necessary
+import { useInView } from 'react-intersection-observer';
 
 const Contact = () => {
     const { contactInfo } = data;
+    const { ref: contactTitleRef, inView: contactTitleInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+    const { ref: contactFormRef, inView: contactFormInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+    const { ref: contactCardRef, inView: contactCardInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+    // const { ref: contactTitleRef, inView: contactTitleInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -45,23 +51,63 @@ const Contact = () => {
     return (
         <Container sx={{maxWidth:'1140px !important'}} >
             <Box sx={{ backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
+                <Box ref={contactTitleRef} sx={{ mb:4,opacity: contactTitleInView ? 1 : 0, transform: contactTitleInView ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.8s ease, transform 0.8s ease' }}>
+                    <Typography
+                        variant="h6"
+                        align="center"
+                        gutterBottom
+                        fontWeight={500}
+                        color="#9f9f9f"
+                    >
+                        Services
+                    </Typography>
+                    <Typography
+                        variant="h3"
+                        align="center"
+                        gutterBottom
+                        fontWeight={600}
+                    >
+                        Quality Services
+                    </Typography>
+                    </Box>
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
+   
                     {/* Contact Information Card */}
                     <Box sx={{ flex: 0.3, marginBottom: { xs: '20px', sm: '0' } }}>
-                        <Card sx={{ border: '1px solid #9f9b80', borderRadius: '12px' }}>
+                        <Card 
+                        ref={contactCardRef}
+                        sx={{ border: '1px solid #9f9b80', borderRadius: '12px' }}>
                             <CardContent sx={{ backgroundColor: '#121214' }}>
                                 <div style={{ marginTop: '20px' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px' }}>
+                                    <div
+                                    ref={contactCardRef}
+                                     style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
+                                        opacity: contactCardInView ? 1 : 0,
+                                        transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
+                                        transition: 'opacity 0.8s ease, transform 0.2s ease'
+                                      }}>
                                         <LocationOnIcon sx={{ color: '#eb5d3a' }} />
                                         <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80' }}>{contactInfo.office.title}</Typography>
                                         <Typography variant="body2" sx={{ color: '#9f9b80' }}>{contactInfo.office.details}</Typography>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px' }}>
+                                    <div
+                                    ref={contactCardRef}
+                                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
+                                        opacity: contactCardInView ? 1 : 0,
+                                        transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
+                                        transition: 'opacity 0.8s ease, transform 0.4s ease'
+                                     }}>
                                         <EmailIcon sx={{ color: '#eb5d3a' }} />
                                         <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80' }}>{contactInfo.email.title}</Typography>
                                         <Typography variant="body2" sx={{ color: '#9f9b80' }}>{contactInfo.email.details}</Typography>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px' }}>
+                                    <div
+                                    ref={contactCardRef}
+                                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
+                                        opacity: contactCardInView ? 1 : 0,
+                                        transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
+                                        transition: 'opacity 0.8s ease, transform 0.6s ease'
+                                     }}>
                                         <PhoneIcon sx={{ color: '#eb5d3a' }} />
                                         <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80' }}>{contactInfo.contactNo.title}</Typography>
                                         <Typography variant="body2" sx={{ color: '#9f9b80' }}>{contactInfo.contactNo.details}</Typography>
@@ -71,7 +117,14 @@ const Contact = () => {
                         </Card>
                     </Box>
                     {/* Contact Form Card */}
-                    <Box sx={{ flex: 0.7 }}>
+                    <Box
+                     ref={contactFormRef}
+
+                    sx={{ flex: 0.7,
+                     opacity: contactFormInView ? 1 : 0,
+                     transform: contactFormInView ? 'translateY(0)' : 'translateY(30px)',
+                     transition: 'opacity 0.8s ease, transform 0.8s ease'   
+                     }}>
                         <Card sx={{ border: '1px solid #9f9b80', borderRadius: '12px' }}>
                             <CardContent sx={{ backgroundColor: '#121214' }}>
                                 <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>

@@ -7,12 +7,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from '../data/data.json';
 import { useNavigate } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 
 const About = () => {
   const { personalInfo, socialLinks, experience, education, testimonials } = data;
   const sliderRef = React.useRef(null);
   const navigate = useNavigate();
 
+
+  // Use `useInView` for scroll animations
+  const { ref: profileImageRef, inView: profileImageInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref: infoCardRef, inView: infoCardInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const experienceRefs = experience.map(() => useInView({ triggerOnce: true, threshold: 0.2 }));
+  const educationRefs = education.map(() => useInView({ triggerOnce: true, threshold: 0.2 }));
+  const { ref: testimonialsTitleRef, inView: testimonialsTitleInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref: testimonialsSlidesRef, inView: testimonialsSlidesInView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref: testimonialsNavRef, inView: testimonialsNavInView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const handleGetInTouch = () => {
     navigate('/contact'); // Route to contact when clicking on "Hire Me"
@@ -45,22 +55,14 @@ const About = () => {
   };
 
   const ResumeItem = ({ icon: Icon, period, title, organization }) => (
-    <Box 
-      sx={{ 
+    <Box
+      sx={{
         display: 'flex',
         alignItems: 'flex-start',
-        pb: 3,
-        mb: 3,
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-        '&:last-child': { 
-          mb: 0,
-          pb: 0,
-          borderBottom: 'none'
-        }
       }}
     >
-      <Box 
-        sx={{ 
+      <Box
+        sx={{
           mr: 2,
           bgcolor: '#fff',
           display: 'flex',
@@ -79,9 +81,9 @@ const About = () => {
         <Icon />
       </Box>
       <Box>
-        <Typography 
-          variant="body2" 
-          sx={{ 
+        <Typography
+          variant="body2"
+          sx={{
             color: '#9f9b80',
             mb: 0.5,
             fontWeight: 500
@@ -92,9 +94,9 @@ const About = () => {
         <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
           {title}
         </Typography>
-        <Typography 
-          variant="body1" 
-          sx={{ 
+        <Typography
+          variant="body1"
+          sx={{
             color: '#9f9b80'
           }}
         >
@@ -111,7 +113,7 @@ const About = () => {
         color: 'text.primary',
       }}
     >
-      <Container sx={{maxWidth:'1140px !important'}}>
+      <Container sx={{ maxWidth: '1140px !important' }}>
         {/* Hero Cards Section */}
         <Box
           sx={{
@@ -125,14 +127,19 @@ const About = () => {
             mb: 8,
           }}
         >
-          <Box sx={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 4,
-            width: '100%',
-            maxWidth: '100%'
-          }}>
+          <Box
+            ref={profileImageRef}
+            sx={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 4,
+              width: '100%',
+              maxWidth: '100%',
+              opacity: profileImageInView ? 1 : 0,
+              transform: profileImageInView ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 0.8s ease, transform 0.8s ease',
+            }}>
             {/* Profile Image Card */}
             <Card
               elevation={0}
@@ -162,11 +169,15 @@ const About = () => {
 
           {/* Info Card */}
           <Box
+            ref={infoCardRef}
             sx={{
               flex: 2,
               display: 'flex',
               flexDirection: 'column',
-              gap: 4
+              gap: 4,
+              opacity: infoCardInView ? 1 : 0,
+              transform: infoCardInView ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 0.8s ease, transform 0.8s ease',
             }}
           >
             <Card
@@ -181,9 +192,9 @@ const About = () => {
               <Typography variant="h3" gutterBottom fontWeight={600}>
                 I'm {personalInfo.name}, a {personalInfo.title}
               </Typography>
-              <Typography 
-                variant="body1" 
-                sx={{ 
+              <Typography
+                variant="body1"
+                sx={{
                   mb: 3,
                   color: 'text.secondary',
                   lineHeight: 1.8
@@ -191,9 +202,9 @@ const About = () => {
               >
                 {personalInfo.fullBio}
               </Typography>
-              <Typography 
-                variant="body1" 
-                sx={{ 
+              <Typography
+                variant="body1"
+                sx={{
                   mb: 4,
                   color: 'text.secondary',
                   lineHeight: 1.8
@@ -204,7 +215,7 @@ const About = () => {
               <Button
                 variant="outlined"
                 color="inherit"
-                endIcon={<SendIcon  />}
+                endIcon={<SendIcon />}
                 onClick={handleGetInTouch}
                 disableRipple
                 sx={{
@@ -251,15 +262,29 @@ const About = () => {
               Experience
             </Typography>
             <Box sx={{ mt: 3 }}>
-              {experience.map((item, index) => (
-                <ResumeItem
-                  key={index}
-                  icon={FileCopyIcon}
-                  period={item.period}
-                  title={item.title}
-                  organization={item.company}
-                />
-              ))}
+              {experience.map((item, index) => {
+                const { ref, inView } = experienceRefs[index];
+                return (
+                  <Box ref={ref} key={index} sx={{
+                    opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.8s ease, transform 0.8s ease', pb: 3,
+                    mb: 3,
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    '&:last-child': {
+                      mb: 0,
+                      pb: 0,
+                      borderBottom: 'none'
+                    },
+                  }}>
+                    <ResumeItem
+                      key={index}
+                      icon={FileCopyIcon}
+                      period={item.period}
+                      title={item.title}
+                      organization={item.company}
+                    />
+                  </Box>
+                )
+              })}
             </Box>
           </Card>
 
@@ -276,28 +301,57 @@ const About = () => {
               Education
             </Typography>
             <Box sx={{ mt: 3 }}>
-              {education.map((item, index) => (
-                <ResumeItem
-                  key={index}
-                  icon={SchoolIcon}
-                  period={item.period}
-                  title={item.degree}
-                  organization={item.institution}
-                />
-              ))}
+              {education.map((item, index) => {
+                const { ref, inView } = educationRefs[index];
+                return (
+                  <Box ref={ref} key={index} sx={{
+                    opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.8s ease, transform 0.8s ease', pb: 3,
+                    mb: 3,
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    '&:last-child': {
+                      mb: 0,
+                      pb: 0,
+                      borderBottom: 'none'
+                    },
+                  }}>
+                    <ResumeItem
+                      key={index}
+                      icon={SchoolIcon}
+                      period={item.period}
+                      title={item.degree}
+                      organization={item.institution}
+                    />
+                  </Box>
+                )
+              })}
             </Box>
           </Card>
         </Box>
 
         {/* Testimonials Section */}
-        <Box sx={{ mt: 5 , backgroundColor: '#121214', borderRadius: 4, padding:4}}>
+        <Box sx={{ mt: 5, backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
+          <Box
+          ref={testimonialsTitleRef}
+          sx={{
+            opacity: testimonialsTitleInView ? 1 : 0,
+            transform: testimonialsTitleInView ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 0.8s ease, transform 0.8s ease',
+          }}
+          >
           <Typography variant="h6" align="center" gutterBottom fontWeight={500} color="#9f9f9f">
-          Testinomials
+            Testinomials
           </Typography>
           <Typography variant="h3" align="center" gutterBottom fontWeight={600}>
             What clients say!
           </Typography>
-          <Box sx={{ mt: 6, position: 'relative' }}>
+          </Box>
+          <Box
+            ref={testimonialsSlidesRef}
+          sx={{ mt: 6, position: 'relative'
+            ,opacity: testimonialsSlidesInView ? 1 : 0,
+            transform: testimonialsSlidesInView ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 0.8s ease, transform 0.8s ease',
+           }}>
             <Slider ref={sliderRef} {...settings}>
               {testimonials.map((testimonial, index) => (
                 <Box key={index} sx={{ px: 2 }}>
@@ -350,12 +404,17 @@ const About = () => {
                 </Box>
               ))}
             </Slider>
+          </Box>
             <Box
+            ref={testimonialsNavRef}
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 gap: 2,
-                mt: 4
+                mt: 4,
+                opacity: testimonialsNavInView ? 1 : 0,
+                transform: testimonialsNavInView ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'opacity 0.8s ease, transform 0.8s ease', 
               }}
             >
               <Button
@@ -399,7 +458,6 @@ const About = () => {
                 <ArrowForward />
               </Button>
             </Box>
-          </Box>
         </Box>
       </Container>
     </Box>

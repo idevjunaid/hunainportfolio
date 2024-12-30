@@ -6,21 +6,18 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import data from '../../data/data.json';
 import AOS from 'aos';
+import { useInView } from 'react-intersection-observer';
+
 
 const CompanySlider = () => {
-  useEffect(() => {
-    // Initialize AOS for animations
-    AOS.init({
-      duration: 800,
-      once: true,
-    });
-  }, []);
-
-  // Duplicate slides for seamless infinite loop
+  const { ref: sectionRef, inView: sectionInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
   const extendedCompanies = [...data.companies, ...data.companies];
 
   return (
-    <Box sx={{ display: 'block', width: '100%', border: '1px solid #ffff', opacity: '1 !important' }} data-aos="fade-up">
+    <Box ref={sectionRef}    >
       <Card
         elevation={0}
         sx={{
@@ -29,6 +26,9 @@ const CompanySlider = () => {
           borderRadius: 4,
           width: '100%',
           overflow: 'hidden',
+          opacity: sectionInView ? 1 : 0,
+          transform: sectionInView ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease, transform 0.8s ease',
         }}
       >
         <Typography
@@ -54,6 +54,11 @@ const CompanySlider = () => {
             }}
             speed={5000}
             allowTouchMove={true}
+            onSwiper={(swiper) => {
+              swiper.on('slideChange', () => {
+                AOS.refresh();
+              });
+            }}
             breakpoints={{
               1024: {
                 slidesPerView: 3,
@@ -97,7 +102,6 @@ const CompanySlider = () => {
           </Swiper>
         </Box>
       </Card>
-
     </Box>
   );
 };
