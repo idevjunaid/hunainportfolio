@@ -11,8 +11,6 @@ import ContactCTA from './components/shared/ContactCTA';
 import Footer from './components/shared/Footer';
 import Service from './pages/Service';
 import Contact from './pages/Contact';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import Loading from './components/Loading';
 
 function App() {

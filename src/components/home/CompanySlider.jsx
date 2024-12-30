@@ -5,7 +5,6 @@ import 'swiper/swiper-bundle.css';
 import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import data from '../../data/data.json';
-import AOS from 'aos';
 import { useInView } from 'react-intersection-observer';
 
 
@@ -56,7 +55,7 @@ const CompanySlider = () => {
             allowTouchMove={true}
             onSwiper={(swiper) => {
               swiper.on('slideChange', () => {
-                AOS.refresh();
+                // AOS.refresh();
               });
             }}
             breakpoints={{
