@@ -59,7 +59,7 @@ const Contact = () => {
                         fontWeight={500}
                         color="#9f9f9f"
                     >
-                        Services
+                        contact
                     </Typography>
                     <Typography
                         variant="h3"
@@ -67,7 +67,7 @@ const Contact = () => {
                         gutterBottom
                         fontWeight={600}
                     >
-                        Quality Services
+                        Get in Touch with Me!
                     </Typography>
                     </Box>
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>

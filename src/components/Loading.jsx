@@ -13,27 +13,29 @@ const Loading = ({ isVisible }) => {
         justifyContent: 'center',
         alignItems: 'center',
         bgcolor: '#121212',
-        fontFamily: 'Inter, sans-serif',
-        transition: 'opacity 0.5s ease, transform 0.5s ease',
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(-20px)',
+        fontFamily: 'Poppins,sans-serif',
+        
       }}
     >
       <Box
         sx={{
           display: 'flex',
           gap: '10px',
+          transform: isVisible ? 'translateY(0)' : 'translateY(-1500px)',
+          transition: 'transform 0.5s ease-in-out',
         }}
       >
         {letters.map((letter, index) => (
           <Box
+          component='span'
             key={index}
             sx={{
-              fontSize: '32px',
-              fontWeight: '100',
+              fontSize: '20px',
+              fontWeight: '200',
               color: '#9f9f9f', 
               opacity: 0,
-              animation: `fadeInOut 1.4s ease-in-out ${index * 0.2}s infinite`, // Staggered timing
+              animation: `loading 1s ease-in-out ${index * 0.1}s infinite alternate`, 
+              transition: 'all 0.5s ease'
             }}
           >
             {letter}
@@ -42,11 +44,11 @@ const Loading = ({ isVisible }) => {
       </Box>
       <style>
         {`
-          @keyframes fadeInOut {
-            0%, 100% {
+          @keyframes loading {
+            0% {
               opacity: 0;
             }
-            50% {
+            100% {
               opacity: 1;
             }
           }

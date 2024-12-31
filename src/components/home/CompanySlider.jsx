@@ -37,11 +37,14 @@ const CompanySlider = () => {
             textAlign: 'left',
             mb: 4,
             color: 'text.primary',
+            fontSize: '1.375rem',
+            fontWeight:'500',
+            lineHeight: '1.2',
           }}
         >
           Companies I Worked With
         </Typography>
-        <Box sx={{ width: '100%', overflow: 'hidden' }}>
+        <Box sx={{ width: '100%', overflow: 'hidden' , py:2}}>
           <Swiper
             modules={[Autoplay]}
             spaceBetween={20}
@@ -82,7 +85,8 @@ const CompanySlider = () => {
                     src={company.logo}
                     alt={company.name}
                     sx={{
-                      height: 60,
+                      height: 'auto',
+                      width: '100%',
                       objectFit: 'contain',
                       filter: (theme) =>
                         theme.palette.mode === 'dark'

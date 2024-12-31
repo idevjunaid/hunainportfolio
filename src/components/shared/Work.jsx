@@ -42,16 +42,18 @@ const Work = ({ showAll = false }) => {
               transition: 'opacity 0.8s ease, transform 0.8s ease',
             }}
           >
-            <Typography variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
+            <Typography variant="h4" gutterBottom sx={{ color: 'text.primary', fontSize: '3.125rem', lineHeight: '1.2', fontWeight: 500 }}>
               {projects.title}
             </Typography>
             <Typography
               variant="subtitle1"
               sx={{
                 m: 'auto',
-                mb: 6,
+                mb: 2,
                 color: '#9f9f9f',
-                maxWidth: '800px',
+                maxWidth: '450px',
+                fontSize: '1rem',
+                lineHeight: '1.75rem',
               }}
             >
               {projects.description}
@@ -76,18 +78,21 @@ const Work = ({ showAll = false }) => {
                 '& .MuiTabs-indicator': { display: 'none' },
                 '& .MuiTab-root': {
                   color: '#9f9f9f',
-                  fontWeight: 600,
+                  fontWeight: 500,
                   position: 'relative',
                   minWidth: 'auto',
                   padding: '12px 16px 12px 0',
                   marginRight: '24px',
+                  fontSize: '14px',
+                  lineHeight: '1',
+                  textTransform: 'none',
                   '&::after': {
                     content: '""',
                     position: 'absolute',
                     bottom: 0,
                     left: 0,
                     width: 0,
-                    height: '2px',
+                    height: '3px',
                     backgroundColor: '#eb5d3a',
                     transition: 'width 0.3s ease-in-out',
                   },
@@ -116,7 +121,7 @@ const Work = ({ showAll = false }) => {
                 md: 'repeat(3, 1fr)',
               },
               gap: 3,
-              opacity: transitioning ? 0 : 1, // Change opacity based on transitioning state
+              opacity: transitioning ? 0 : 1,
               transition: 'opacity 0.3s ease',
             }}
           >
@@ -125,16 +130,18 @@ const Work = ({ showAll = false }) => {
                 key={project.id}
                 sx={{
                   bgcolor: '#121214',
-                  borderRadius: 4,
+                  borderRadius: '0 0 15px 15px',
                   overflow: 'hidden',
                   position: 'relative',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: '1px solid #77777d33',
                   opacity: cardsInView ? 1 : 0,
                   transform: cardsInView ? 'translateY(0)' : 'translateY(30px)',
                   transition: `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`,
                 }}
               >
-                <Box sx={{ position: 'relative' }}>
+                <Box sx={{
+                  position: 'relative',
+                }}>
                   <CardMedia
                     component="img"
                     height="200"
@@ -180,13 +187,13 @@ const Work = ({ showAll = false }) => {
                     </IconButton>
                   </Box>
                 </Box>
-                <CardContent sx={{ p: 2 }}>
+                <CardContent sx={{ p: 2, textAlign: 'left' }}>
                   <Typography
                     variant="caption"
                     sx={{
-                      color: '#9f9f9f',
-                      textTransform: 'uppercase',
-                      letterSpacing: 1,
+                      color: '#77777d',
+                      fontSize: '1rem',
+                      lineHeight: '1.75rem',
                     }}
                   >
                     {project.category}
@@ -196,7 +203,8 @@ const Work = ({ showAll = false }) => {
                     sx={{
                       color: '#fff',
                       fontWeight: 500,
-                      mt: 0.5,
+                      fontSize: '1.25rem',
+                      lineHeight: '1'
                     }}
                   >
                     {project.name}

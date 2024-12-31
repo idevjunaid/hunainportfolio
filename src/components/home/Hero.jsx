@@ -52,6 +52,7 @@ const Hero = () => {
           maxWidth: '100%',
           overflow: 'hidden',
           mb: 5,
+          alignItems: 'start',
         }}
       >
         {/* Profile Image Card */}
@@ -59,6 +60,7 @@ const Hero = () => {
           ref={sectionRef}
           sx={{
             flex: 1,
+            height: 'auto',
             display: 'flex',
             flexDirection: 'column',
             gap: 4,
@@ -84,17 +86,16 @@ const Hero = () => {
               src={personalInfo.profileImage}
               alt="Profile"
               sx={{
-                width: '200px',
-                height: '200px',
-                borderRadius: '50%',
+                maxWidth: '100%',
+                height: 'auto',
                 mb: 2,
                 objectFit: 'cover',
               }}
             />
-            <Typography variant="h4" fontWeight={600} gutterBottom>
+            <Typography variant="h4" fontWeight={500} gutterBottom sx={{ fontSize: '2.5rem' }}>
               {personalInfo.name}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+            <Typography variant="subtitle1" color="text.secondary" gutterBottom sx={{ fontSize: '1rem', lineHeight: '1.75rem', fontWeight: '400' }}>
               {personalInfo.shortBio}
             </Typography>
             <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 2 }}>
@@ -107,9 +108,13 @@ const Hero = () => {
                   sx={{
                     color: 'text.primary',
                     transition: 'all 0.3s ease-in-out',
+                    border: '1px solid #77777d33',
+                    borderRadius: '15px',
+                    p: 1.5,
                     '&:hover': {
                       color: '#eb5d3a',
-                      transform: 'translateY(-3px)',
+                      backgroundColor: 'transparent',
+                      // transform: 'translateY(-3px)',
                     },
                   }}
                 >
@@ -122,6 +127,7 @@ const Hero = () => {
         <Box
           sx={{
             display: 'flex',
+            flex: 2,
             gap: 4,
             flexDirection: 'column',
             alignItems: 'stretch',
@@ -143,10 +149,10 @@ const Hero = () => {
               transition: 'opacity 0.8s ease, transform 0.8s ease',
             }}
           >
-            <Typography variant="h6" color="#9f9f9f" sx={{ mb: 2 }}>
+            <Typography variant="h6" color="#9f9f9f" sx={{ mb: 2, fontSize: '1rem', fontWeight: 400, lineHeight: '1.75rem' }}>
               Hello There!
             </Typography>
-            <Typography variant="h4" gutterBottom fontWeight={600}>
+            <Typography variant="h4" gutterBottom fontWeight={400} sx={{ fontSize: '2.5rem', lineHeight: '3rem' }}>
               I'm {personalInfo.name}, {personalInfo.title} {personalInfo.shortBio}
             </Typography>
             <Typography
@@ -159,7 +165,9 @@ const Hero = () => {
                 alignItems: 'center',
                 gap: 1,
                 width: 'fit-content',
-                fontSize: '18px',
+                fontSize: '15px',
+                fontWeight: 400,
+                lineHeight: '1.875rem'
               }}
             >
               <DotIcon sx={{ color: '#0f0', fontSize: 18 }} />
@@ -168,18 +176,22 @@ const Hero = () => {
             <Button
               variant="outlined"
               color="inherit"
-              endIcon={<DownloadIcon sx={{ fontSize: 18 }} />}
+              endIcon={<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="remixicon "><path d="M3 19H21V21H3V19ZM13 13.1716L19.0711 7.1005L20.4853 8.51472L12 17L3.51472 8.51472L4.92893 7.1005L11 13.1716V2H13V13.1716Z"></path></svg>}
               onClick={() => window.open('/cv.pdf', '_blank')}
               sx={{
-                borderRadius: '20px',
-                p: '8px 16px',
-                fontWeight: 600,
+                borderColor: '#eb5d3a',
+                color: '#fff',
+                bgcolor: '#eb5d3a',
+                borderRadius: '15px',
+                p: '12px 24px',
+                fontWeight: 500,
                 fontSize: '0.875rem',
-                transition: 'all 0.3s ease-in-out',
+                lineHeight:'1.25rem',
+                transition: 'all 0.2s ease-in-out',
+                border: '1px solid #77777d33',
                 '&:hover': {
-                  borderColor: '#eb5d3a',
-                  color: '#fff',
-                  bgcolor: '#eb5d3a',
+                  borderColor: '#77777d33',
+                  bgcolor: 'transparent',
                 },
               }}
             >
