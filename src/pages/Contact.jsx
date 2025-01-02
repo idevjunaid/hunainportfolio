@@ -49,15 +49,20 @@ const Contact = () => {
     };
 
     return (
-        <Container sx={{maxWidth:'1140px !important'}} >
+        <Container sx={{ maxWidth: '1140px !important' }} >
             <Box sx={{ backgroundColor: '#121214', borderRadius: 4, padding: 4 }}>
-                <Box ref={contactTitleRef} sx={{ mb:4,opacity: contactTitleInView ? 1 : 0, transform: contactTitleInView ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.8s ease, transform 0.8s ease' }}>
+                <Box ref={contactTitleRef} sx={{ mb: 4, opacity: contactTitleInView ? 1 : 0, transform: contactTitleInView ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.8s ease, transform 0.8s ease' }}>
                     <Typography
                         variant="h6"
                         align="center"
                         gutterBottom
-                        fontWeight={500}
-                        color="#9f9f9f"
+                        sx={{
+                            color: "#9f9f9f",
+                            fontSize: "1rem",
+                            lineHeight: '1.75rem',
+                            textTransform: "none",
+                            mb: 2,
+                        }}
                     >
                         contact
                     </Typography>
@@ -65,72 +70,80 @@ const Contact = () => {
                         variant="h3"
                         align="center"
                         gutterBottom
-                        fontWeight={600}
+                        fontWeight={500}
+                        sx={{
+                            fontSize: '3.125rem',
+                            lineHeight: 1.4
+                        }}
                     >
                         Get in Touch with Me!
                     </Typography>
-                    </Box>
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
-   
+                </Box>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 4 }}>
+
                     {/* Contact Information Card */}
-                    <Box sx={{ flex: 0.3, marginBottom: { xs: '20px', sm: '0' } }}>
-                        <Card 
-                        ref={contactCardRef}
-                        sx={{ border: '1px solid #9f9b80', borderRadius: '12px' }}>
-                            <CardContent sx={{ backgroundColor: '#121214' }}>
-                                <div style={{ marginTop: '20px' }}>
-                                    <div
-                                    ref={contactCardRef}
-                                     style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
-                                        opacity: contactCardInView ? 1 : 0,
-                                        transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
-                                        transition: 'opacity 0.8s ease, transform 0.2s ease'
-                                      }}>
+                    <Box sx={{ flex: 0.35, marginBottom: { xs: '20px', sm: '0' } }}>
+                        <Card
+                            ref={contactCardRef}
+                            sx={{ border: '1px solid #77777d33', borderRadius: '15px', }}>
+                            <CardContent sx={{ backgroundColor: '#121214', p: '45px 40px' }}>
+                                <Box>
+                                    <Box
+                                        ref={contactCardRef}
+                                        sx={{
+                                            display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '40px',
+                                            opacity: contactCardInView ? 1 : 0,
+                                            transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
+                                            transition: 'opacity 0.8s ease, transform 0.2s ease'
+                                        }}>
                                         <LocationOnIcon sx={{ color: '#eb5d3a' }} />
-                                        <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80' }}>{contactInfo.office.title}</Typography>
-                                        <Typography variant="body2" sx={{ color: '#9f9b80' }}>{contactInfo.office.details}</Typography>
-                                    </div>
-                                    <div
-                                    ref={contactCardRef}
-                                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
-                                        opacity: contactCardInView ? 1 : 0,
-                                        transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
-                                        transition: 'opacity 0.8s ease, transform 0.4s ease'
-                                     }}>
+                                        <Typography variant="body1" sx={{ fontWeight: 500, color: '#ccc', fontSize: '1rem', my: 1 }}>{contactInfo.office.title}:</Typography>
+                                        <Typography variant="body2" sx={{ color: '#9f9f9f', fontSize: '1rem', lineHeight: '1.75rem' }}>{contactInfo.office.details}</Typography>
+                                    </Box>
+                                    <Box
+                                        ref={contactCardRef}
+                                        sx={{
+                                            display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '40px',
+                                            opacity: contactCardInView ? 1 : 0,
+                                            transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
+                                            transition: 'opacity 0.8s ease, transform 0.4s ease'
+                                        }}>
                                         <EmailIcon sx={{ color: '#eb5d3a' }} />
-                                        <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80' }}>{contactInfo.email.title}</Typography>
-                                        <Typography variant="body2" sx={{ color: '#9f9b80' }}>{contactInfo.email.details}</Typography>
-                                    </div>
-                                    <div
-                                    ref={contactCardRef}
-                                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
-                                        opacity: contactCardInView ? 1 : 0,
-                                        transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
-                                        transition: 'opacity 0.8s ease, transform 0.6s ease'
-                                     }}>
+                                        <Typography variant="body1" sx={{ fontWeight: 500, color: '#ccc', fontSize: '1rem', my: 1 }}>{contactInfo.email.title}:</Typography>
+                                        <Typography variant="body2" sx={{ color: '#9f9f9f', fontSize: '1rem', lineHeight: '1.75rem' }}>{contactInfo.email.details}</Typography>
+                                    </Box>
+                                    <Box
+                                        ref={contactCardRef}
+                                        sx={{
+                                            display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '10px',
+                                            opacity: contactCardInView ? 1 : 0,
+                                            transform: contactCardInView ? 'translateY(0)' : 'translateY(30px)',
+                                            transition: 'opacity 0.8s ease, transform 0.6s ease'
+                                        }}>
                                         <PhoneIcon sx={{ color: '#eb5d3a' }} />
-                                        <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80' }}>{contactInfo.contactNo.title}</Typography>
-                                        <Typography variant="body2" sx={{ color: '#9f9b80' }}>{contactInfo.contactNo.details}</Typography>
-                                    </div>
-                                </div>
+                                        <Typography variant="body1" sx={{ fontWeight: 500, color: '#ccc', fontSize: '1rem', my: 1 }}>{contactInfo.contactNo.title}:</Typography>
+                                        <Typography variant="body2" sx={{ color: '#9f9f9f', fontSize: '1rem', lineHeight: '1.75rem' }}>{contactInfo.contactNo.details}</Typography>
+                                    </Box>
+                                </Box>
                             </CardContent>
                         </Card>
                     </Box>
                     {/* Contact Form Card */}
                     <Box
-                     ref={contactFormRef}
+                        ref={contactFormRef}
 
-                    sx={{ flex: 0.7,
-                     opacity: contactFormInView ? 1 : 0,
-                     transform: contactFormInView ? 'translateY(0)' : 'translateY(30px)',
-                     transition: 'opacity 0.8s ease, transform 0.8s ease'   
-                     }}>
-                        <Card sx={{ border: '1px solid #9f9b80', borderRadius: '12px' }}>
+                        sx={{
+                            flex: 0.7,
+                            opacity: contactFormInView ? 1 : 0,
+                            transform: contactFormInView ? 'translateY(0)' : 'translateY(30px)',
+                            transition: 'opacity 0.8s ease, transform 0.8s ease'
+                        }}>
+                        <Card sx={{ border: '1px solid #77777d33', borderRadius: '12px' }}>
                             <CardContent sx={{ backgroundColor: '#121214' }}>
-                                <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
+                                <form onSubmit={handleSubmit} sx={{ marginTop: '20px' }}>
                                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, justifyContent: 'space-between', gap: 2 }}>
                                         <Box sx={{ flex: 1, marginBottom: '10px' }}>
-                                            <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80', marginBottom: '5px' }}>Name</Typography>
+                                            <Typography variant="body1" sx={{ fontWeight: 500, color: '#9f9f9f', fontSize: '1rem', marginBottom: '5px' }}>Name</Typography>
                                             <TextField
                                                 name="name"
                                                 variant="outlined"
@@ -139,11 +152,39 @@ const Contact = () => {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 required
-                                                sx={{ backgroundColor: '#fff', borderRadius: '8px', color: 'black', '& .MuiInputBase-input': { color: 'black' }, '& .MuiInputLabel-root': { color: '#9f9b80' }, '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'transparent' } }}
+                                                sx={{
+                                                    backgroundColor: '#fff',
+                                                    borderRadius: '8px',
+                                                    color: 'black',
+                                                    '& .MuiInputBase-input': {
+                                                        color: 'black',
+                                                    },
+                                                    '& .MuiInputLabel-root': {
+                                                        color: '#9f9b80',
+                                                    },
+                                                    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                                                        borderColor: 'transparent',
+                                                    },
+                                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                                        borderColor: 'transparent',
+                                                    },
+                                                    // Styles for the autofill background color
+                                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                        borderColor: 'transparent',
+                                                    },
+                                                    '& .MuiInputBase-input:-webkit-autofill': {
+                                                        WebkitBoxShadow: '0 0 0 1000px #fff inset',
+                                                        WebkitTextFillColor: 'black', // Set the text color
+                                                        WebkitBorderRadius: '15px',
+                                                    },
+                                                    '&:hover': {
+                                                        border: 'none',
+                                                    },
+                                                }}
                                             />
                                         </Box>
                                         <Box sx={{ flex: 1, marginBottom: '10px' }}>
-                                            <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80', marginBottom: '5px' }}>Email</Typography>
+                                            <Typography variant="body1" sx={{ fontWeight: 500, color: '#9f9f9f', fontSize: '1rem', marginBottom: '5px' }}>Email</Typography>
                                             <TextField
                                                 name="email"
                                                 variant="outlined"
@@ -152,11 +193,21 @@ const Contact = () => {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 required
-                                                sx={{ backgroundColor: '#fff', borderRadius: '8px', color: 'black', '& .MuiInputBase-input': { color: 'black' }, '& .MuiInputLabel-root': { color: '#9f9b80' }, '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'transparent' } }}
+                                                sx={{
+                                                    backgroundColor: '#fff', borderRadius: '8px', color: 'black', '& .MuiInputBase-input': { color: 'black' }, '& .MuiInputLabel-root': { color: '#9f9b80' }, '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'transparent' },
+                                                    '& .MuiInputBase-input:-webkit-autofill': {
+                                                        WebkitBoxShadow: '0 0 0 1000px #fff inset',
+                                                        WebkitTextFillColor: 'black', // Set the text color
+                                                        WebkitBorderRadius: '15px',
+                                                    },
+                                                    '&:hover': {
+                                                        border: 'none',
+                                                    },
+                                                }}
                                             />
                                         </Box>
                                     </Box>
-                                    <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#9f9b80', marginBottom: '5px' }}>Message</Typography>
+                                    <Typography variant="body1" sx={{ fontWeight: 500, color: '#9f9f9f', fontSize: '1rem', marginBottom: '5px' }} >Message</Typography>
                                     <TextField
                                         name="message"
                                         variant="outlined"
@@ -167,12 +218,24 @@ const Contact = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
-                                        sx={{ backgroundColor: '#fff', borderRadius: '8px', color: 'black', '& .MuiInputBase-input': { color: 'black' }, '& .MuiInputLabel-root': { color: '#9f9b80' }, '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'transparent' } }}
+                                        sx={{
+                                            backgroundColor: '#fff', borderRadius: '8px', color: 'black', '& .MuiInputBase-input': { color: 'black' }, '& .MuiInputLabel-root': { color: '#9f9b80' }, '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': { borderColor: 'transparent' },
+                                            '& .MuiInputBase-input:-webkit-autofill': {
+                                                WebkitBoxShadow: '0 0 0 1000px #fff inset',
+                                                WebkitTextFillColor: 'black', // Set the text color
+                                                WebkitBorderRadius: '15px',
+                                            },
+                                            '&:hover': {
+                                                border: 'none',
+                                            },
+                                        }}
                                     />
                                     <Button type="submit" variant="outlined" endIcon={<EmailIcon />} sx={{
-                                        marginTop: '10px', color: 'white', backgroundColor: '#eb5d3a', borderColor: '#eb5d3a', borderRadius: '20px', p: 2, px: 4, '&:hover': { backgroundColor: 'transparent', color: 'white', borderColor: 'white' }, '&:hover': {
-                                            backgroundColor: 'transparent', borderColor: '#ffffff',
-                                        },
+                                        marginTop: '10px', color: 'white', backgroundColor: '#eb5d3a', border: '1px solid #eb5d3a', borderRadius: '15px', p: '12px 24px',textTransform: 'none',mt:3,
+                                         '&:hover': { backgroundColor: 'transparent', color: 'white', borderColor: '#77777d33', fontSize: '14px' },
+                                        '& svg': {
+                                            width: '14px',
+                                        }
                                     }}>
                                         Send
                                     </Button>

@@ -26,6 +26,9 @@ const About = () => {
 
   const handleGetInTouch = () => {
     navigate('/contact'); // Route to contact when clicking on "Hire Me"
+    setTimeout(() => {
+      document.body.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   };
 
   const settings = {
@@ -64,16 +67,17 @@ const About = () => {
       <Box
         sx={{
           mr: 2,
+          p:1.5,
           bgcolor: '#fff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: 40,
-          height: 40,
-          borderRadius: 1,
+          width: 50,
+          height: 50,
+          borderRadius: '15px',
           '& svg': {
-            width: 24,
-            height: 24,
+            width: '100%',
+            height: 'auto',
             color: '#eb5d3a',
           }
         }}
@@ -84,20 +88,24 @@ const About = () => {
         <Typography
           variant="body2"
           sx={{
-            color: '#9f9b80',
+            color: '#9f9f9f',
             mb: 0.5,
-            fontWeight: 500
+            fontWeight: 400,
+            fontSize: '1rem',
+            lineHeight: 1
           }}
         >
           {period}
         </Typography>
-        <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+        <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 500, fontSize:'1.25rem', lineHeight:'1.1', m:'12px 0' }}>
           {title}
         </Typography>
         <Typography
           variant="body1"
           sx={{
-            color: '#9f9b80'
+            color: '#77777d',
+            fontSize:'1rem',
+            lineHeight:'1.875rem'
           }}
         >
           {organization}
@@ -134,7 +142,6 @@ const About = () => {
               display: 'flex',
               flexDirection: 'column',
               gap: 4,
-              width: '100%',
               maxWidth: '100%',
               opacity: profileImageInView ? 1 : 0,
               transform: profileImageInView ? 'translateY(0)' : 'translateY(30px)',
@@ -156,10 +163,8 @@ const About = () => {
                 src={personalInfo.profileImage}
                 alt="Profile"
                 sx={{
-                  width: '200px',
-                  height: '200px',
-                  borderRadius: '50%',
-                  mb: 2,
+                  maxWidth: '100%',
+                  height:'auto',
                   objectFit: 'cover'
                 }}
               />
@@ -189,15 +194,16 @@ const About = () => {
                 borderRadius: 4
               }}
             >
-              <Typography variant="h3" gutterBottom fontWeight={600}>
+              <Typography variant="h3" gutterBottom sx={{fontSize:'2.5rem', lineHeight:'3.125rem'}}>
                 I'm {personalInfo.name}, a {personalInfo.title}
               </Typography>
               <Typography
                 variant="body1"
                 sx={{
-                  mb: 3,
+                  mb: 2,
                   color: 'text.secondary',
-                  lineHeight: 1.8
+                  lineHeight: '1.75rem',
+                  fontSize:'1rem'
                 }}
               >
                 {personalInfo.fullBio}
@@ -205,9 +211,10 @@ const About = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  mb: 4,
+                  mb: 3,
                   color: 'text.secondary',
-                  lineHeight: 1.8
+                  lineHeight: '1.75rem',
+                  fontSize:'1rem'
                 }}
               >
                 {personalInfo.detailedBio}
@@ -215,23 +222,27 @@ const About = () => {
               <Button
                 variant="outlined"
                 color="inherit"
-                endIcon={<SendIcon />}
+                endIcon={
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="remixicon "><path d="M21 3C21.5523 3 22 3.44772 22 4V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V19H20V7.3L12 14.5L2 5.5V4C2 3.44772 2.44772 3 3 3H21ZM8 15V17H0V15H8ZM5 10V12H0V10H5ZM19.5659 5H4.43414L12 11.8093L19.5659 5Z"></path></svg>}
                 onClick={handleGetInTouch}
                 disableRipple
                 sx={{
                   borderRadius: '20px',
-                  p: 2,
-                  fontWeight: 600,
+                  p: '12px 24px',
                   fontSize: '0.875rem',
                   bgcolor: '#eb5d3a',
                   color: '#fff',
-                  borderColor: '#eb5d3a',
+                  border: '1px solid #eb5d3a',
                   borderWidth: '0.1px',
-                  transition: 'all 0.3s ease-in-out',
+                  transition: 'all 0.2s ease-in-out',
+                  textTransform:'none',
                   '&:hover': {
                     bgcolor: 'transparent',
-                    color: '#fff',
-                    borderColor: '#fff',
+                    borderColor: '#77777d33',
+                  },
+                  '& svg':{
+                    width: '14px',
+                    height:'14px',
                   }
                 }}
               >
@@ -258,7 +269,7 @@ const About = () => {
               borderRadius: 4,
             }}
           >
-            <Typography variant="h5" gutterBottom fontWeight={600}>
+            <Typography variant="h5" gutterBottom fontWeight={500} fontSize={'1.375rem'} lineHeight={1.2}>
               Experience
             </Typography>
             <Box sx={{ mt: 3 }}>
@@ -297,7 +308,7 @@ const About = () => {
               borderRadius: 4,
             }}
           >
-            <Typography variant="h5" gutterBottom fontWeight={600}>
+            <Typography variant="h5" gutterBottom fontWeight={500} fontSize={'1.375rem'} lineHeight={1.2}>
               Education
             </Typography>
             <Box sx={{ mt: 3 }}>
@@ -338,10 +349,10 @@ const About = () => {
             transition: 'opacity 0.8s ease, transform 0.8s ease',
           }}
           >
-          <Typography variant="h6" align="center" gutterBottom fontWeight={500} color="#9f9f9f">
+          <Typography variant="h6" align="center" gutterBottom color="#9f9f9f" sx={{fontSize:'1rem', lineHeight:'1.25rem', mb:3}}>
             Testinomials
           </Typography>
-          <Typography variant="h3" align="center" gutterBottom fontWeight={600}>
+          <Typography variant="h3" align="center" gutterBottom fontWeight={500} fontSize={'3.125rem'} lineHeight={1.2}>
             What clients say!
           </Typography>
           </Box>
@@ -385,17 +396,19 @@ const About = () => {
                       <Typography
                         variant="body1"
                         sx={{
-                          color: '#9f9b80',
-                          lineHeight: 1.8
+                          color: '#9f9f9f',
+                          lineHeight: '1.875rem',
+                          fontSize:'1rem',
+                          mb: 2 
                         }}
                       >
                         {testimonial.text}
                       </Typography>
                       <Box sx={{ mt: 'auto' }}>
-                        <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                        <Typography variant="h6" sx={{ mb: 1  , fontWeight: 500, fontSize:'1.25rem', lineHeight:1.4,color: '#fffff' }}>
                           {testimonial.name}
                         </Typography>
-                        <Typography variant="body2" sx={{ color: '#9f9b80' }}>
+                        <Typography variant="body2" sx={{ color: '#77777d',fontSize:'0.875rem',lineHeight:'1.25rem' }}>
                           {testimonial.position}
                         </Typography>
                       </Box>
@@ -435,7 +448,7 @@ const About = () => {
                   }
                 }}
               >
-                <ArrowBack />
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="remixicon "><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
               </Button>
               <Button
                 onClick={goToNext}
@@ -455,7 +468,7 @@ const About = () => {
                   }
                 }}
               >
-                <ArrowForward />
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="remixicon "><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
               </Button>
             </Box>
         </Box>

@@ -1,6 +1,6 @@
 import React from 'react';
 import data from '../data/data.json';
-import { Box, Typography, Grid, Card, CardContent, Container, Button } from '@mui/material';
+import { Box, Typography, Grid, Card, CardContent, Container, Button, ListItem, List } from '@mui/material';
 import { Web as WebIcon, MobileFriendly as MobileIcon, Search as SeoIcon } from '@mui/icons-material';
 import { useInView } from 'react-intersection-observer';
 
@@ -31,8 +31,13 @@ const Service = () => {
                         variant="h6"
                         align="center"
                         gutterBottom
-                        fontWeight={500}
-                        color="#9f9f9f"
+                        sx={{
+                            color:"#9f9f9f",
+                            fontSize:"1rem",
+                            lineHeight:'1.75rem',
+                            textTransform:"none",
+                            mb: 2,
+                        }}
                     >
                         Services
                     </Typography>
@@ -40,7 +45,12 @@ const Service = () => {
                         variant="h3"
                         align="center"
                         gutterBottom
-                        fontWeight={600}
+                        fontWeight={500}
+                        sx={{
+                            fontSize:'3.125rem',
+                            lineHeight:1.4
+
+                        }}
                     >
                         Quality Services
                     </Typography>
@@ -60,15 +70,16 @@ const Service = () => {
                                 >
                                     <Card
                                         sx={{
-                                            border: '1px solid #9f9b80',
-                                            borderRadius: '12px',
+                                            borderRadius: '15px',
                                             height: '100%',
+                                            border: '1px solid #77777d33',
+                                            transition: 'all 0.2s ease-in-out',
                                             '&:hover': { borderColor: '#eb5d3a' },
                                             position: 'relative',
                                             zIndex: 1,
                                         }}
                                     >
-                                        <CardContent sx={{ height: '100%', padding: '40px', backgroundColor: '#121214' }}>
+                                        <CardContent sx={{ height: '100%', padding: '60px 40px !important', backgroundColor: '#121214' }}>
                                             {service.id === 1 && (
                                                 <WebIcon fontSize="large" sx={{ color: '#9f9f9f', fontSize: 80 }} />
                                             )}
@@ -78,10 +89,10 @@ const Service = () => {
                                             {service.id === 3 && (
                                                 <SeoIcon fontSize="large" sx={{ color: '#9f9f9f', fontSize: 80 }} />
                                             )}
-                                            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1, color: '#9f9f9f' }}>
+                                            <Typography variant="h5" sx={{ fontSize:'1.25rem',lineHeight:1.1,fontWeight:500, my: 2, color: '#ccc' }}>
                                                 {service.title}
                                             </Typography>
-                                            <Typography variant="body2" sx={{ color: '#9f9b80' }}>
+                                            <Typography variant="body2" sx={{ color: '#77777d', fontSize:'1rem', lineHeight:'1.75rem' }}>
                                                 {service.description}
                                             </Typography>
                                         </CardContent>
@@ -108,8 +119,13 @@ const Service = () => {
                             variant="h6"
                             align="center"
                             gutterBottom
-                            fontWeight={500}
-                            color="#9f9f9f"
+                            sx={{
+                                color:"#9f9f9f",
+                                fontSize:"1rem",
+                                lineHeight:'1.75rem',
+                                textTransform:"none",
+                                mb: 2,
+                            }}
 
                         >
                             Pricing
@@ -118,7 +134,12 @@ const Service = () => {
                             variant="h3"
                             align="center"
                             gutterBottom
-                            fontWeight={600}
+                            fontWeight={500}
+                            sx={{
+                                fontSize:'3.125rem',
+                                lineHeight:1.4
+    
+                            }}
                         >
                             Flexible Pricing Plan
                         </Typography>
@@ -137,8 +158,8 @@ const Service = () => {
                             >
                                 <Card
                                     sx={{
-                                        border: '1px solid #9f9b80',
-                                        borderRadius: '12px',
+                                        border: '1px solid #77777d33',
+                                        borderRadius: '15px',
                                         position: 'relative',
                                         zIndex: 1,
                                     }}
@@ -152,31 +173,37 @@ const Service = () => {
                                             flexDirection: 'column',
                                         }}
                                     >
-                                        <Box sx={{ border: '1px solid #9f9b80', borderRadius: '8px', padding: '20px' }}>
-                                            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1, color: '#9f9f9f' }}>
+                                        <Box sx={{ border: '1px solid #77777d33', borderRadius: '15px', padding: '20px' }}>
+                                            <Typography variant="h5" sx={{ fontWeight: 500, mb: 4, color: '#ccc', fontSize:'1.375rem',lineHeight:'1.8rem' }}>
                                                 {pricingItem.title}
                                             </Typography>
-                                            <Typography variant="body2" sx={{ color: '#9f9b80', mb: 2 }}>
+                                            <Typography variant="body2" sx={{ color: '#77777d', mb: 3, fontSize:'1.25rem', lineHeight:'1.75rem' }}>
                                                 {pricingItem.description}
                                             </Typography>
-                                            <Typography variant="h3" sx={{ color: '#eb5d3a', mb: 2 }}>
+                                            <Typography variant="h3" sx={{ color: '#eb5d3a',fontSize:'2.375rem', lineHeight:'1.875rem', fontWeight:500 }}>
                                                 {pricingItem.rate}
-                                                <Typography variant="h5" component="span" sx={{ color: '#9f9b80' }}>
+                                                <Typography variant="h5" component="span" sx={{ color: '#9f9f9f', fontSize:'1rem',fontWeight:400, lineHeight:'1.875rem' }}>
                                                     {' '}
                                                     / hour
                                                 </Typography>
                                             </Typography>
                                         </Box>
                                         <Box sx={{ padding: '20px' }}>
-                                            <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                            <List sx={{ listStyleType: 'none', padding: 0,mb:3 }}>
                                                 {pricingItem.features.map((feature, index) => (
-                                                    <li
+                                                    <ListItem
                                                         key={index}
-                                                        style={{
-                                                            color: '#9f9b80',
+                                                        sx={{
+                                                            color: '#77777d',
                                                             marginBottom: '10px',
                                                             display: 'flex',
                                                             alignItems: 'center',
+                                                            p:'2px 0',
+                                                            fontSize:'1rem',
+                                                            lineHeight:'1.75rem',
+                                                            '& svg':{
+                                                                width: 'auto',
+                                                            }
                                                         }}
                                                     >
                                                         <svg
@@ -191,9 +218,9 @@ const Service = () => {
                                                             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                                                         </svg>
                                                         {feature}
-                                                    </li>
+                                                    </ListItem>
                                                 ))}
-                                            </ul>
+                                            </List>
                                             <Button
                                                 variant="outlined"
                                                 color="primary"
@@ -212,17 +239,22 @@ const Service = () => {
                                                 sx={{
                                                     backgroundColor: '#eb5d3a',
                                                     color: 'white',
-                                                    borderColor: '#eb5d3a',
+                                                    border: '1px solid #eb5d3a',
                                                     borderRadius: '20px',
-                                                    fontWeight: 'bold',
-                                                    transition: 'all 0.3s ease-in-out',
+                                                    transition: 'all 0.2s ease-in-out',
+                                                    p: '12px 24px !important',
+                                                    textTransform: 'none',
+                                                    marginTop: 'auto',
+                                                    fontSize:'0.875rem',
+                                                    fontWeight:500,
                                                     '&:hover': {
                                                         backgroundColor: 'transparent',
                                                         color: 'white',
-                                                        borderColor: 'white',
+                                                        borderColor: '#77777d33',
                                                     },
-                                                    p: 2,
-                                                    marginTop: 'auto',
+                                                    '& svg':{
+                                                        width: '14px',
+                                                    }
                                                 }}
                                             >
                                                 {pricingItem.buttonText}

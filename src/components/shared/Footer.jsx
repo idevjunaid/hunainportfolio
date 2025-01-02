@@ -22,6 +22,9 @@ const Footer = () => {
         }}>
           <Typography 
             variant="body2" 
+            fontWeight={500}
+            fontSize={'0.875rem'}
+            lineHeight={'1.25rem'}
             sx={{ 
               color: '#9f9f9f',
               textAlign: { xs: 'center', sm: 'left' }
@@ -33,11 +36,14 @@ const Footer = () => {
             display: 'flex', 
             alignItems: 'center',
             gap: 0.5,
-            color: '#9f9f9f'
+            color: '#9f9f9f',
+            fontSize: '0.875rem',
+            fontWeight: 500,
+            lineHeight:'1.25rem'
           }}>
             Crafted with <FavoriteIcon sx={{ color: '#eb5d3a', fontSize: '1rem' }} /> by{' '}
             <Link 
-              href="https://devjunaid.com" 
+              href="https://portfolio-junaid-85331.web.app" 
               target="_blank"
               rel="noopener noreferrer"
               sx={{ 

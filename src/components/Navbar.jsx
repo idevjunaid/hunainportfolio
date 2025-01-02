@@ -37,7 +37,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (document.body.scrollTop > 0) {
+      if (document.body.scrollTop > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -64,11 +64,17 @@ function Navbar() {
   };
 
   const handleLogoClick = () => {
-    navigate('/'); // Route to home when clicking on the logo
+    navigate('/'); 
+    setTimeout(() => {
+      document.body.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   };
 
   const handleHireMeClick = () => {
-    navigate('/contact'); // Route to contact when clicking on "Hire Me"
+    navigate('/contact'); 
+    setTimeout(() => {
+      document.body.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   };
 
   const drawer = (

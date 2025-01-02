@@ -9,14 +9,15 @@ const ContactCTA = () => {
   return (
     <Box sx={{ bgcolor: '#121214', py: 8, borderRadius: '16px' }}>
       <Container sx={{maxWidth:'1140px !importanat'}}>
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h4" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
+        <Box sx={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto' }}>
+          <Typography variant="h4" gutterBottom sx={{ color: 'text.primary',fontSize:'2.5rem', lineHeight:'3.125rem'}}>
             Are You Ready to kickstart your project with a touch of magic?
           </Typography>
           <Typography 
             sx={{ 
               color: '#9f9f9f',
-              maxWidth: '800px',
+              fontSize: '1rem',
+              lineHeight:'1.75rem',
               margin: '0 auto',
               mb: 4
             }}
@@ -26,20 +27,23 @@ const ContactCTA = () => {
           </Typography>
           <Button
             variant="outlined"
-            onClick={() => navigate('/contact')}
+            onClick={() => {navigate('/contact');    setTimeout(() => {
+              document.body.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 50);}}
             disableRipple
-            endIcon={<ArrowIcon />}
+            endIcon={<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="remixicon "><path d="M3 19H21V21H3V19ZM13 13.1716L19.0711 7.1005L20.4853 8.51472L12 17L3.51472 8.51472L4.92893 7.1005L11 13.1716V2H13V13.1716Z"></path></svg>}
             sx={{
               color: '#fff',
               bgcolor: '#eb5d3a',
-              borderColor: '#eb5d3a',
+              border:'1px solid #eb5d3a',
               borderRadius: '20px',
-              p:2,
+              p:'12px 24px',
               fontSize: '1rem',
+              textTransform:'none',
               fontWeight: 500,
               '&:hover': {
                 bgcolor: 'transparent',
-                borderColor: '#fff',
+                borderColor: '#77777d33',
                 '& .MuiSvgIcon-root': {
                   transform: 'translateX(4px)',
                 }
@@ -47,7 +51,7 @@ const ContactCTA = () => {
               '& .MuiSvgIcon-root': {
                 transition: 'transform 0.3s ease-in-out',
               },
-              transition: 'all 0.3s ease-in-out',
+              transition: 'all 0.2s ease-in-out',
             }}
           >
             Let's Talk
